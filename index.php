@@ -11,6 +11,8 @@ function main()
     $spe->parityOutlier([11, 13, 15, 19, 9, 13, -21]);
 
     $spe->findNeedle(["red", "blue", "yellow", "black", "grey"], "blue");
+
+    $spe->blueOcean([1,2,3,4,6,10], [1,4]);
 }
 main();
 
@@ -48,8 +50,7 @@ class SpeSkillTest
     {
         echo 'parity outlier : ';
         if (sizeof($array) <= 3) {
-            var_dump(false);
-            die;
+            return var_dump(false);
         }
         $even = 0;
         $odd = 0;
@@ -66,15 +67,21 @@ class SpeSkillTest
         var_dump(($cycle > 1) ? $odd : $even);
     }
 
-    public function findNeedle($array, $needle)
+    public static function findNeedle($array, $needle)
     {
         echo 'needle : ';
         foreach ($array as $haystack) {
             if (strpos($haystack, $needle) !== false) {
-                var_dump(true);
-                die;
+               return var_dump(true);
             }
         }
-        var_dump(false);
+        return var_dump(false);
+    }
+
+    public static function blueOcean($array, $should_removed)
+    {
+        echo 'blue ocean : ';
+        print_r(implode(', ',array_diff($array,$should_removed)));
+        // var_dump($array);
     }
 }
