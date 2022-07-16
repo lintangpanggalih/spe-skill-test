@@ -9,6 +9,8 @@ function main()
 
     $spe->parityOutlier([2, 4, 0, 100, 4, 11, 2602, 36]);
     $spe->parityOutlier([11, 13, 15, 19, 9, 13, -21]);
+
+    $spe->findNeedle(["red", "blue", "yellow", "black", "grey"], "blue");
 }
 main();
 
@@ -25,6 +27,7 @@ class SpeSkillTest
     }
     public static function narcissisticNumber($number)
     {
+        echo 'narcissistic number : ';
         $size = static::countDigit($number);
         $auxiliary = $number;
 
@@ -43,6 +46,11 @@ class SpeSkillTest
 
     public static function parityOutlier($array)
     {
+        echo 'parity outlier : ';
+        if (sizeof($array) <= 3) {
+            var_dump(false);
+            die;
+        }
         $even = 0;
         $odd = 0;
         $cycle = 0;
@@ -56,5 +64,17 @@ class SpeSkillTest
             }
         }
         var_dump(($cycle > 1) ? $odd : $even);
+    }
+
+    public function findNeedle($array, $needle)
+    {
+        echo 'needle : ';
+        foreach ($array as $haystack) {
+            if (strpos($haystack, $needle) !== false) {
+                var_dump(true);
+                die;
+            }
+        }
+        var_dump(false);
     }
 }
