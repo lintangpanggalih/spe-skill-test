@@ -1,27 +1,45 @@
 <?php
 
+function main()
+{
+    $spe = new SpeSkillTest();
+
+    $spe->narcissisticNumber(135);
+    $spe->narcissisticNumber(153);
+}
+main();
+
 class SpeSkillTest
 {
-
-    private static function countDigit($n)
+    private static function countDigit($number)
     {
-        if ($n == 0)
-            return 0;
-
-        return (1 + ($n / 10));
+        $size = 0;
+        while ($number != 0) {
+            $number = intval($number / 10);
+            $size++;
+        }
+        return $size;
     }
-
     public static function narcissisticNumber($number)
     {
-        $digit = static::countDigit($number);
-        $duplicate = $number;
-        $sum = 0;
+        $size = static::countDigit($number);
+        $auxiliary = $number;
 
-        while ($duplicate) {
-            $sum += pow($duplicate % 10, $digit);
-            $duplicate = (int)$duplicate / 10;
+        $result = 0;
+        $digit = 0;
+        while ($auxiliary != 0) {
+            //last digit 
+            $digit = $auxiliary % 10;
+            //remove last digit
+            $auxiliary =  intval($auxiliary / 10);
+            //Add power of digit of number size
+            $result = (pow($digit, $size)) + $result;
         }
-    
-        return ($number == $sum);
+        var_dump($result == $number ? true : false);
+    }
+
+    public static function parityOutlier()
+    {
+        
     }
 }
